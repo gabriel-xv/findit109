@@ -30,9 +30,11 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'cloudinary'
 gem 'devise'
 gem 'omniauth-facebook'
+gem 'geocoder'
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass'
 gem 'simple_form'
+
 group :development, :test do gem 'pry-byebug'
   gem 'pry-rails'
   gem 'dotenv-rails'
