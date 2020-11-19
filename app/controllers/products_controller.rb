@@ -1,6 +1,16 @@
 class ProductsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
 
+  def index
+    @products = Product.all
+    @markers = @flats.geocoded.map do |flat|
+      {
+        lat: flat.latitude,
+        lng: flat.longitude
+      }
+    end
+  end
+
   def show
     @product = Product.find(params[:id])
   end
