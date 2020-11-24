@@ -3,16 +3,24 @@ class ProductsController < ApplicationController
 
   def index
     @products = Product.all
-    @markers = @flats.geocoded.map do |flat|
+    @markers = @products.geocoded.map do |product|
       {
-        lat: flat.latitude,
-        lng: flat.longitude
+        lat: product.latitude,
+        lng: product.longitude
       }
     end
   end
 
   def show
     @product = Product.find(params[:id])
+    @markers = [
+      {
+        lat: @product.latitude,
+        lng: @product.longitude,
+        infoWindow: render_to_string(partial: "info_window", locals: { product: @product }),
+        image_url: helpers.asset_url('')
+      }
+    ]
   end
 
   def new
@@ -33,6 +41,6 @@ class ProductsController < ApplicationController
   private
 
   def product_params
-    params.require(:product).permit(:name, :description, :price, :condition, :photo)
+    params.require(:product).permit(:name, :description, :price, :condition, :address, :lat, :lng, :photo)
   end
 end
