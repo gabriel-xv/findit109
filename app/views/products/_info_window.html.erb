@@ -1,1 +1,10 @@
-<h2><%= product.name %></h2>
+<div class="popup-map">
+   <%= link_to product_path(product) do %>
+    <div class="card-map-flex">
+      <h5><%= "#{product.name}" %></h5>
+      <h5><%= "#{product.price}€" %></h5>
+    </div>
+    <p><%= "#{product.address}" %></p>
+    <%= cl_image_tag product.photo.key, height: 150, width: 200, crop: :scale %>
+    <% end %>
+</div>
