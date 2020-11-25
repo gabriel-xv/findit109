@@ -1,4 +1,18 @@
-<div id="map"
-     style="width: 100%; height: 600px;"
-     data-markers="<%= @markers.to_json %>"
-     data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+<div class="container">
+
+  <% @products.each do |product| %>
+        <%= link_to product_path(product.id) do %>
+          <div class="card-product mb-3 mr-3">
+           <%= cl_image_tag product.photo.key, height: 300, width: 400, crop: :scale %>
+            <div class="card-product-infos ml-3">
+              <h4><%= product.name %></h4>
+              <p class="game-description mb-0"><%= product.description %></p>
+            </div>
+            <div class="card-price">
+              <i class="fas fa-heart"></i>
+              <p><%= product.price %>€</p>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+</div>
